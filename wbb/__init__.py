@@ -1,15 +1,16 @@
-from config import (
-    bot_token, api_id, api_hash, OWNER_ID,
-    sudo_users_id as SUDO_USER_ID, log_group_id as LOG_GROUP_ID,
-    fernet_encryption_key as FERNET_ENCRYPTION_KEY, mongo_db_uri as mdb_uri,
-    captcha_delay_in_seconds as WELCOME_DELAY_KICK_SEC,
-    ARQ_API_BASE_URL as ARQ_API)
 from pyrogram import Client
-from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
+
 from Python_ARQ import ARQ
 import time
 import logging
-
+from sample_config import (
+    bot_token,
+    api_id,
+    api_hash,
+    OWNER_ID,
+    sudo_users_id as SUDO_USER_ID,
+    ARQ_API_BASE_URL as ARQ_API
+)
 
 f = open("error.log", "w")
 f.write("PEAK OF LOG FILE")
@@ -35,13 +36,10 @@ logging.getLogger("").addHandler(console)
 
 log = logging.getLogger()
 
-
 SUDOERS = SUDO_USER_ID
 SUDOERS.append(OWNER_ID)
 MOD_LOAD = []
 MOD_NOLOAD = []
 bot_start_time = time.time()
-mongo_client = MongoClient(mdb_uri)
-db = mongo_client.wbb
 app = Client("wbb", bot_token=bot_token, api_id=api_id, api_hash=api_hash)
 arq = ARQ(ARQ_API)
