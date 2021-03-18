@@ -1,6 +1,5 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-from ....sample_config import mongo_db_uri
+from ...config import MONGODB_URI
 
-
-client = AsyncIOMotorClient(mongo_db_uri)
+client = AsyncIOMotorClient(MONGODB_URI)
 db = client.wbb

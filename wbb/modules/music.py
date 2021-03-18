@@ -7,7 +7,7 @@ import aiofiles
 import os
 from random import randint
 from pyrogram import filters
-from wbb import app, SUDOERS, arq 
+from wbb import app, SUDO_USERS, arq
 from wbb.utils.fetch import fetch
 from wbb.utils.errors import capture_err
 
@@ -30,7 +30,7 @@ ydl_opts = {
 
 # Ytmusic
 
-@app.on_message(filters.command("ytmusic") & ~filters.edited & filters.user(SUDOERS))
+@app.on_message(filters.command("ytmusic") & ~filters.edited & filters.user(SUDO_USERS))
 @capture_err
 async def music(_, message):
     if len(message.command) != 2:

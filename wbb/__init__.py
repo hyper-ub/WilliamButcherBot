@@ -3,14 +3,7 @@ from pyrogram import Client
 from Python_ARQ import ARQ
 import time
 import logging
-from sample_config import (
-    bot_token,
-    api_id,
-    api_hash,
-    OWNER_ID,
-    sudo_users_id as SUDO_USER_ID,
-    ARQ_API_BASE_URL as ARQ_API
-)
+from .config import BOT_TOKEN, API_ID, API_HASH, SUDO_USERS, OWNER, ARQ_API_ENDPOINT
 
 f = open("error.log", "w")
 f.write("PEAK OF LOG FILE")
@@ -36,10 +29,12 @@ logging.getLogger("").addHandler(console)
 
 log = logging.getLogger()
 
-SUDOERS = SUDO_USER_ID
-SUDOERS.append(OWNER_ID)
+SUDO_USERS = SUDO_USERS
+SUDO_USERS.append(OWNER)
+
 MOD_LOAD = []
 MOD_NOLOAD = []
+
 bot_start_time = time.time()
-app = Client("wbb", bot_token=bot_token, api_id=api_id, api_hash=api_hash)
-arq = ARQ(ARQ_API)
+app = Client("wbb", bot_token=API_HASH, api_id=API_ID, api_hash=API_HASH)
+arq = ARQ(ARQ_API_ENDPOINT)

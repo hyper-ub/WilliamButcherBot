@@ -5,7 +5,7 @@ import speedtest
 import psutil
 from wbb.utils import nekobin, formatter
 from wbb.utils.errors import capture_err
-from wbb import app, SUDOERS, bot_start_time
+from wbb import app, SUDO_USERS, bot_start_time
 
 __MODULE__ = "Sudoers"
 __HELP__ = '''/log - To Get Logs From Last Run.
@@ -17,7 +17,7 @@ __HELP__ = '''/log - To Get Logs From Last Run.
 # Logs Module
 
 
-@app.on_message(filters.user(SUDOERS) & filters.command("log"))
+@app.on_message(filters.user(SUDO_USERS) & filters.command("log"))
 @capture_err
 async def logs_chat(_, message):
     keyb = types.InlineKeyboardMarkup(
@@ -44,7 +44,7 @@ logs_create = filters.create(logs_callback)
 
 @app.on_callback_query(logs_create)
 async def paste_log_neko(client, query):
-    if query.from_user.id in SUDOERS:
+    if query.from_user.id in SUDO_USERS:
         j = open("error.log", "r")
         data = await nekobin.neko(j.read())
         keyb = types.InlineKeyboardMarkup(
@@ -72,7 +72,7 @@ def speed_convert(size):
 
 
 @app.on_message(
-    filters.user(SUDOERS) & filters.command("speedtest")
+    filters.user(SUDO_USERS) & filters.command("speedtest")
 )
 @capture_err
 async def get_speedtest_result(_, message):
@@ -91,7 +91,7 @@ Latency  - {round((i["latency"]))} ms
 
 
 @app.on_message(
-    filters.user(SUDOERS) & filters.command("stats")
+    filters.user(SUDO_USERS) & filters.command("stats")
 )
 @capture_err
 async def get_stats(_, message):
