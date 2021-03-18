@@ -1,7 +1,7 @@
 from pyrogram import filters
 
 from wbb import app
-import database.notes as db
+from .database import notes as db
 
 
 @app.on_message(filters.command("save") & ~filters.edited & ~filters.private)
