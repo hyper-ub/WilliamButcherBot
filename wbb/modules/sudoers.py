@@ -95,8 +95,8 @@ async def ban_globally(_, message):
         if len(message.command) < 3:
             await message.reply_text("**Usage**\n/gban [USERNAME | USER_ID] [REASON]")
             return
-        user = message.text.split(None, 2)[1]
-        reason = message.text.split(None, 2)[2]
+        user = message.text.strip(None ,2).split()
+        reason = message.text.stript(None, 2).split()
         if "@" in user:
             user = user.replace("@", "")
         user = (await app.get_users(user))
